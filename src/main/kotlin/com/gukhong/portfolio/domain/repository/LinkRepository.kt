@@ -1,6 +1,6 @@
 package com.gukhong.portfolio.domain.repository
 
-import com.gukhong.portfolio.domain.entity.Achievement
+import com.gukhong.portfolio.domain.entity.Link
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface LinkRepository : JpaRepository<Achievement, Long>
+interface LinkRepository : JpaRepository<Link, Long>

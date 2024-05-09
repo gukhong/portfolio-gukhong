@@ -1,13 +1,16 @@
 package com.gukhong.portfolio.domain.repository
 
-import com.gukhong.portfolio.domain.entity.Achievement
 import com.gukhong.portfolio.domain.entity.Experience
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Query
+import java.util.*
 
-interface ExperienceRepository : JpaRepository<Experience, Long>{
+interface ExperienceRepository : JpaRepository<Experience, Long> {
 
-    // select * from Experience where is_active = :isActive
-
+    @Query("select e from Experience e left join fetch e.details where e.isActive = :isActive")
     fun findAllByIsActive(isActive: Boolean): List<Experience>
+
+    @Query("select e from Experience e left join fetch e.details where e.id = :id")
+    override fun findById(id: Long): Optional<Experience>
 
 }

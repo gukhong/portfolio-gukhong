@@ -34,7 +34,7 @@ class Experience(
 
     @OneToMany(
         targetEntity = ExperienceDetail::class,
-        fetch = FetchType.LAZY,
+        fetch = FetchType.EAGER,
         cascade = [CascadeType.ALL]
     )
     @JoinColumn(name = "experience_id")

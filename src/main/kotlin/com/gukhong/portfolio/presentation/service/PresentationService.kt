@@ -39,7 +39,7 @@ class PresentationService(
             skills = skills
         )
     }
-
+    
     @Transactional(readOnly = true)
     fun getProjects(): List<ProjectDTO> {
         val projects = presentationRepository.getActiveProjects()

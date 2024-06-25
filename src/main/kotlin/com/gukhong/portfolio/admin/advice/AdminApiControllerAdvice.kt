@@ -1,4 +1,4 @@
-package com.gukhong.portfolio.admin.context
+package com.gukhong.portfolio.admin.advice
 
 import com.gukhong.portfolio.admin.exception.AdminException
 import org.slf4j.LoggerFactory

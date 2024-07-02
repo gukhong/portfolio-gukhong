@@ -16,7 +16,7 @@ class AdminIntroductionViewController(private val adminIntroductionService: Admi
     @GetMapping
     fun introduction(model: Model): String {
         val formElements = listOf<FormElementDTO>(
-            TextFormElementDTO("title", 10),
+            TextFormElementDTO("content", 10),
             SelectFormElementDTO("isActive", 2, listOf(true.toString(), false.toString()))
         )
         model.addAttribute("formElements", formElements)

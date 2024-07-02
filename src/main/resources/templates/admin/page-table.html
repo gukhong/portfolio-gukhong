@@ -1,19 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/layouts/layout-admin :: layout(~{::main})}">
 
 <div th:replace="~{admin/fragments/fragment-head :: head}"></div>
 
 <body>
 
-<!-- ======= Header ======= -->
-<div th:replace="~{admin/fragments/fragment-header :: header}"></div>
-<!-- End Header -->
-
-<!-- ======= Sidebar ======= -->
-<div th:replace="~{admin/fragments/fragment-sidebar :: sidebar}"></div>
-
 <main id="main" class="main">
-
     <div class="pagetitle">
         <h1>Data Tables</h1>
         <nav>
@@ -765,15 +757,6 @@
     </section>
 
 </main><!-- End #main -->
-
-<!-- ======= Footer ======= -->
-<div th:replace="~{admin/fragments/fragment-footer :: footer}"></div>
-<!-- End Footer -->
-
-<div th:replace="~{admin/fragments/fragment-foot :: foot}"></div>
-
-<div th:replace="~{admin/fragments/fragment-script-util :: util}"></div>
-
 </body>
 
 </html>

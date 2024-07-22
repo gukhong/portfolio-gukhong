@@ -17,13 +17,15 @@ class DataInitializer(
     private val introductionRepository: IntroductionRepository,
     private val linkRepository: LinkRepository,
     private val projectRepository: ProjectRepository,
-    private val skillRepository: SkillRepository
+    private val skillRepository: SkillRepository,
 ) {
 
-    @PostConstruct
-    fun initializeData(){
+    val log = LoggerFactory.getLogger(DataInitializer::class.java)
 
-        println("스프링이 실행되었습니다. 테스트데이터를 초기화합니다.")
+    @PostConstruct
+    fun initializeData() {
+
+        log.info("스프링이 실행되었습니다. 테스트 데이터를 초기화합니다.")
 
         // achievement 초기화
         val achievements = mutableListOf<Achievement>(
@@ -38,7 +40,7 @@ class DataInitializer(
                 title = "정보처리기사",
                 description = "자료구조, 운영체제, 알고리즘, 데이터베이스 등",
                 host = "한국산업인력공단",
-                achievedDate = LocalDate.of(2020,2,2),
+                achievedDate = LocalDate.of(2020, 2, 2),
                 isActive = true
             )
         )
@@ -47,19 +49,19 @@ class DataInitializer(
         // introduction 초기화
         val introductions = mutableListOf<Introduction>(
             Introduction(content = "주도적으로 문제를 찾고, 해결하는 고양이입니다.", isActive = true),
-            Introduction(content = "기술을 위한 기술이 아닌, 비즈니스 문제 해결을 위한 기술을 추구합니다.", isActive = true),
+            Introduction(content = "기술을 위한 기술이 아닌, 비즈니스 문제를 풀기 위한 기술을 추구합니다.", isActive = true),
             Introduction(content = "기존 소스를 리팩토링하여 더 좋은 구조로 개선하는 작업을 좋아합니다.", isActive = true)
         )
         introductionRepository.saveAll(introductions)
 
         // link 초기화
         val links = mutableListOf<Link>(
-            Link(name = "Github", content = "http://github.com/gukhong", isActive = true),
-            Link(name = "Linkedin", content = "http://www.linkedin.com/in/bokeunjeong", isActive = true),
+            Link(name = "Github", content = "https://github.com/infomuscle", isActive = true),
+            Link(name = "Linkedin", content = "https://www.linkedin.com/in/bokeunjeong", isActive = true),
         )
         linkRepository.saveAll(links)
 
-        // experience 초기화
+        // experience / experience_detail 초기화
         val experience1 = Experience(
             title = "캣홀릭대학교(CatHolic Univ.)",
             description = "컴퓨터공학 전공",
@@ -93,7 +95,7 @@ class DataInitializer(
         experienceRepository.saveAll(mutableListOf(experience1, experience2))
 
         // skill 초기화
-        val java = Skill(name = "Java", type = SkillType.LANGUAGE.name, isActive = true )
+        val java = Skill(name = "Java", type = SkillType.LANGUAGE.name, isActive = true)
         val kotlin = Skill(name = "Kotlin", type = SkillType.LANGUAGE.name, isActive = true)
         val python = Skill(name = "Python", type = SkillType.LANGUAGE.name, isActive = true)
         val spring = Skill(name = "Spring", type = SkillType.FRAMEWORK.name, isActive = true)
@@ -103,8 +105,8 @@ class DataInitializer(
         val kafka = Skill(name = "Kafka", type = SkillType.TOOL.name, isActive = true)
         skillRepository.saveAll(mutableListOf(java, kotlin, python, spring, django, mysql, redis, kafka))
 
-
         // project / project_detail / project_skill 초기화
+
         val project1 = Project(
             name = "유기묘 발견 정보 공유 서비스",
             description = "유기묘 위치의 실시간 공유, 임시보호까지 연결해주는 서비스. 구글 맵스를 연동하여 유기묘 위치 정보를 직관적으로 파악할 수 있도록 하는 사용자 경험 개선 작업.",
@@ -153,8 +155,5 @@ class DataInitializer(
         )
         projectRepository.saveAll(mutableListOf(project1, project2))
 
-
-
     }
-
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
 
 <div th:replace="~{admin/fragments/fragment-head :: head}"></div>
 
@@ -7,23 +7,20 @@
 
 <!-- ======= Header ======= -->
 <div th:replace="~{admin/fragments/fragment-header :: header}"></div>
-<!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
 <div th:replace="~{admin/fragments/fragment-sidebar :: sidebar}"></div>
 
 <main th:replace="${content}">
     <p>Contents</p>
-</main><!-- End #main -->
+</main>
 
 <!-- ======= Footer ======= -->
 <div th:replace="~{admin/fragments/fragment-footer :: footer}"></div>
-<!-- End Footer -->
 
 <div th:replace="~{admin/fragments/fragment-foot :: foot}"></div>
 
 <div th:replace="~{admin/fragments/fragment-script-util :: util}"></div>
 
 </body>
-
 </html>

@@ -12,7 +12,6 @@ data class ExperienceDetailForm(
 
     val isActive: Boolean
 ) {
-
     fun toEntity(): ExperienceDetail {
         return ExperienceDetail(
             content = this.content,

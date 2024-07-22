@@ -30,14 +30,15 @@ class AdminProjectService(
         return TableDTO.from(classInfo, entities)
     }
 
-
     @Transactional
     fun save(form: ProjectForm) {
+
         val projectDetails = form.details
             ?.map { detail -> detail.toEntity() }
             ?.toMutableList()
+
         val project = form.toEntity()
-        project.addDetails((projectDetails))
+        project.addDetails(projectDetails)
 
         projectRepository.save(project)
     }

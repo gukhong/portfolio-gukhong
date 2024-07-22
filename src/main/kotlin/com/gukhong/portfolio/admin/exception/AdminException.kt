@@ -14,7 +14,6 @@ class AdminBadRequestException(message: String) : AdminException(
     message = message
 )
 
-
 class AdminInternalServerErrorException(message: String) : AdminException(
     httpStatus = HttpStatus.INTERNAL_SERVER_ERROR,
     message = message

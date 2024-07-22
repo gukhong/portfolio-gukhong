@@ -9,6 +9,8 @@ import com.gukhong.portfolio.domain.repository.ExperienceRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
+
+
 @Service
 class AdminExperienceService(
     private val experienceRepository: ExperienceRepository
@@ -32,11 +34,13 @@ class AdminExperienceService(
 
     @Transactional
     fun save(form: ExperienceForm) {
+
         val experienceDetails = form.details
             ?.map { detail -> detail.toEntity() }
             ?.toMutableList()
+
         val experience = form.toEntity()
-        experience.addDetails((experienceDetails))
+        experience.addDetails(experienceDetails)
 
         experienceRepository.save(experience)
     }

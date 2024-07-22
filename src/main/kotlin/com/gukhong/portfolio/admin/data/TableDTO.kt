@@ -3,14 +3,14 @@ package com.gukhong.portfolio.admin.data
 import kotlin.reflect.KClass
 import kotlin.reflect.full.memberProperties
 
-class TableDTO(
+data class TableDTO(
     val name: String,
     val columns: List<String>,
     val records: List<List<String>>
 ) {
-
     companion object {
-        fun <T : Any> from(classInfo: KClass<T>, entities: List<Any>, vararg filterings: String): TableDTO {
+        fun <T : Any> from(classInfo: KClass<T>, entities: List<Any>, vararg filterings: String)
+                : TableDTO {
             val name = classInfo.simpleName ?: "Unknown"
             val columns = createColumns(classInfo, *filterings)
             val records = entities.map { entity ->
@@ -26,7 +26,8 @@ class TableDTO(
             return TableDTO(name = name, columns = columns, records = records)
         }
 
-        private fun <T : Any> createColumns(classInfo: KClass<T>, vararg filterings: String): MutableList<String> {
+        private fun <T : Any> createColumns(classInfo: KClass<T>, vararg filterings: String)
+                : MutableList<String> {
             val mainColumns = classInfo.java.declaredFields
                 .filter { !filterings.contains(it.name) }
                 .map { it.name }
@@ -38,5 +39,4 @@ class TableDTO(
             return (mainColumns + baseColumns).toMutableList()
         }
     }
-
 }

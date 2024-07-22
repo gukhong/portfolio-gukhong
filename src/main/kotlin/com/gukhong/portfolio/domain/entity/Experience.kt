@@ -32,11 +32,7 @@ class Experience(
 
     var isActive: Boolean = isActive
 
-    @OneToMany(
-        targetEntity = ExperienceDetail::class,
-        fetch = FetchType.EAGER,
-        cascade = [CascadeType.ALL]
-    )
+    @OneToMany(targetEntity = ExperienceDetail::class, fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "experience_id")
     var details: MutableList<ExperienceDetail> = mutableListOf()
 
@@ -48,15 +44,7 @@ class Experience(
         return "${endYear}.${endMonth}"
     }
 
-    fun update(
-        title: String,
-        description: String,
-        startYear: Int,
-        startMonth: Int,
-        endYear: Int?,
-        endMonth: Int?,
-        isActive: Boolean
-    ) {
+    fun update(title: String, description: String, startYear: Int, startMonth: Int, endYear: Int?, endMonth: Int?, isActive: Boolean) {
         this.title = title
         this.description = description
         this.startYear = startYear
@@ -71,5 +59,4 @@ class Experience(
             this.details.addAll(details)
         }
     }
-
 }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/admin/api/experience")
+@RequestMapping("/admin/api/experiences")
 class AdminExperienceApiController(
     private val adminExperienceService: AdminExperienceService
 ) {
@@ -37,6 +37,5 @@ class AdminExperienceApiController(
     @GetMapping("/{id}/details")
     fun getExperienceDetails(@PathVariable id: Long): TableDTO {
         return adminExperienceService.getExperienceDetailTable(id)
-
     }
 }

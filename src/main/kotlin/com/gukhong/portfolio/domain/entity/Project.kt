@@ -32,11 +32,7 @@ class Project(
 
     var isActive: Boolean = isActive
 
-    @OneToMany(
-        targetEntity = ProjectDetail::class,
-        fetch = FetchType.LAZY,
-        cascade = [CascadeType.PERSIST]
-    )
+    @OneToMany(targetEntity = ProjectDetail::class, fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST])
     @JoinColumn(name = "project_id")
     var details: MutableList<ProjectDetail> = mutableListOf()
 
@@ -51,15 +47,7 @@ class Project(
         return "${endYear}.${endMonth}"
     }
 
-    fun update(
-        name: String,
-        description: String,
-        startYear: Int,
-        startMonth: Int,
-        endYear: Int?,
-        endMonth: Int?,
-        isActive: Boolean
-    ) {
+    fun update(name: String, description: String, startYear: Int, startMonth: Int, endYear: Int?, endMonth: Int?, isActive: Boolean) {
         this.name = name
         this.description = description
         this.startYear = startYear
@@ -74,5 +62,4 @@ class Project(
             this.details.addAll(details)
         }
     }
-
 }

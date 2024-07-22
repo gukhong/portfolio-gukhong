@@ -5,18 +5,25 @@
     /*<![CDATA[*/
 
     // 페이지 속성
-    const pageName = [[${pageName}]]
+    const pageName = [[${pageName}]];
     const pageId = pageName.toString().toLowerCase();
     const editable = [[${editable}]];
     const deletable = [[${deletable}]];
     const hasDetails = [[${hasDetails}]];
 
+    console.log("pageName: ", pageName);
+    console.log("editable: ", editable);
+    console.log("deletable: ", deletable);
+    console.log("hasDetails: ", hasDetails);
+
+
     // 버튼 컴포넌트 정의
     const detailsButton = "<button type=\"button\" class=\"btn btn-light\" onclick=\"getDetails(this)\">조회</button>";
     const editButton = "<button type=\"button\" class=\"btn btn-ligit\" data-bs-toggle=\"modal\" data-bs-target=\"#" + pageName + "Modal\" onclick=\"openEdit(this)\"><i class=\"bi bi-pencil\"></button>"
-    const deleteButton = "<button type=\"button\" class=\"btn btn-light\" onclick=\"deleteRecord(this)\"><i class=\"bi bi-x-square\"></button>";
+    const deleteButton = "<button type=\"button\" class=\"btn btn-ligit\" onclick=\"deleteRecord(this)\"><i class=\"bi bi-x-square\"></button>"
 
-    // 데이터 테이블 초기화
+
+    // 데이터테이블 초기화
     var table = [[${table}]];
     var datatable = createDatatable(table.name, table.columns, table.records, editable, deletable, hasDetails);
     if (hasDetails) {
@@ -24,11 +31,18 @@
         detailDatatable = createDatatable(detailTable.name, detailTable.columns, detailTable.records, false, false, false);
     }
 
+    var detailRows = null;
+    if (hasDetails) {
+        detailRows = {
+            "detail": document.getElementsByClassName("detail")[0].cloneNode(true),
+            "modalDetail": document.getElementsByClassName("modalDetail")[0].cloneNode(true),
+        }
+    }
     function createDatatable(tableName, tableColumns, tableRecords, editable, deletable, hasDetails) {
 
         var tableId = "#" + tableName;
 
-        // 편집 가능할 경우 버튼 추가
+        // 편집 가능할 경우 컬럼 및 버튼 추가
         if (editable) {
             tableColumns.push("edit")
             tableRecords.forEach(list => list.push(editButton))
@@ -52,6 +66,62 @@
                 "data": tableRecords
             }
         });
+    }
+
+    /**
+     * Detail Form Element 추가 */
+    function addDetail(className) {
+        var elements = document.getElementsByClassName(className);
+        var lastElement = elements[elements.length - 1];
+        lastElement.insertAdjacentElement("afterend", detailRows[className].cloneNode(true));
+    }
+
+    /**
+     * 신규 데이터 저장
+     */
+    function save() {
+
+        // 요청 데이터 세팅
+        var target = "." + pageName + "FormElement"; // .IntroductionFormElement
+        var body = createRequestBodyJson(target);
+        if (hasDetails) {
+            addDetailsToRequest(body, "detail");
+        }
+
+        var urlPath = getUrlPathFrom(pageName);
+        var url = "/admin/api" + urlPath;
+
+        httpRequest("POST", url, body, true);
+    }
+
+    /**
+     * Form Element 조회
+     */
+    function getFormElements(target) {
+        var selector = target + " input, " + target + " select";
+
+        return document.querySelectorAll(selector);
+    }
+
+    /**
+     * Request Body에 details 추가
+     */
+    function addDetailsToRequest(body, className) {
+        body["details"] = [];
+        var details = document.querySelectorAll("." + className);
+        for (let i = 0; i < details.length; i++) {
+            var detail = {}
+            var detailFormElements = details[i].querySelectorAll("input, select");
+            detailFormElements.forEach(detailFormElement => {
+                if (detailFormElement.value != null && detailFormElement.value.trim().length > 0) {
+                    detail[detailFormElement.name] = detailFormElement.value;
+                }
+            });
+
+            if (Object.keys(detail).length > 0) {
+                body["details"].push(detail);
+            }
+        }
     }
 
     /*]]>*/

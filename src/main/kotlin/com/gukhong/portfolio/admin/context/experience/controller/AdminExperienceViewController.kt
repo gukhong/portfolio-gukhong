@@ -46,7 +46,7 @@ class AdminExperienceViewController(
             Pair("pageName", table.name),
             Pair("editable", true),
             Pair("deletable", false),
-            Pair("hasDetails", false),
+            Pair("hasDetails", true),
         )
         model.addAllAttributes(pageAttributes)
 

@@ -22,9 +22,9 @@ class Experience(
 
     var description: String = description
 
-    var startYear: Int = startYear
+    var startYear: Int? = startYear
 
-    var startMonth: Int = startMonth
+    var startMonth: Int? = startMonth
 
     var endYear: Int? = endYear
 

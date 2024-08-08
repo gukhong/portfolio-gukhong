@@ -49,16 +49,16 @@ class DataInitializer(
 
         // introduction 초기화
         val introductions = mutableListOf<Introduction>(
-            Introduction(content = "주도적으로 문제를 찾고, 해결하는 고양이입니다.", isActive = true),
-            Introduction(content = "기술을 위한 기술이 아닌, 비즈니스 문제를 풀기 위한 기술을 추구합니다.", isActive = true),
-            Introduction(content = "기존 소스를 리팩토링하여 더 좋은 구조로 개선하는 작업을 좋아합니다.", isActive = true)
+            Introduction(content = "뽐냄을 위한 지식이 아닌 쓰임을 위한 개발을 추구합니다.", isActive = true),
+            Introduction(content = "소통과 참여의 즐거움을 누구보다 잘 알고 있습니다.", isActive = true),
+            Introduction(content = "방향이 틀리지 않았다면 언젠가는 원하는 곳에 닿으리라 믿습니다.", isActive = true)
         )
         introductionRepository.saveAll(introductions)
 
         // link 초기화
         val links = mutableListOf<Link>(
-            Link(name = "Github", content = "https://github.com/infomuscle", isActive = true),
-            Link(name = "Linkedin", content = "https://www.linkedin.com/in/bokeunjeong", isActive = true),
+            Link(name = "Github", content = "https://github.com/gukhong", isActive = true),
+            Link(name = "Linkedin", content = "https://www.linkedin.com/in/gukhong", isActive = true),
         )
         linkRepository.saveAll(links)
 

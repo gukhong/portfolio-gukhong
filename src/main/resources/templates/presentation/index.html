@@ -47,8 +47,7 @@
                         <p class="mb-4"></p>
                         <p class="text-muted" th:each="introduction : ${introductions}" th:text="${introduction.content}">Lorem ipsum dolor sit amet</p>
                         <div class="d-flex justify-content-center fs-2 gap-4">
-                            <a class="text-gradient" href="#!" target="_blank" th:each="link : ${links}"><i class="bi bi-twitter" th:class="|bi bi-${link.name}|"></i></a>
-                        </div>
+                            <a class="text-gradient" href="#!" target="_blank" th:each="link : ${links}" th:href="${link.content}"><i class="bi bi-github" th:class="|bi bi-${link.name}|"></i></a>                        </div>
                     </div>
                 </div>
             </div>

@@ -31,17 +31,17 @@ class DataInitializer(
         // achievement 초기화
         val achievements = mutableListOf<Achievement>(
             Achievement(
-                title = "2022 Catkao 해커톤 최우수상",
-                description = "고양이 쇼핑몰 검색 서비스의 아키텍처, 데이터 모델링, API 개발 역할 수행",
-                host = "캣카오",
-                achievedDate = LocalDate.of(2022, 8, 1),
+                title = "경북대학교 대학원 교육학과 교육심리전공 박사과정 수료",
+                description = "KCI 등재지 학술논문 3편 게재",
+                host = "경북대학교 일반대학원 교육학과",
+                achievedDate = LocalDate.of(2018, 2, 28),
                 isActive = true
             ),
             Achievement(
-                title = "정보처리기사",
+                title = "정보처리기사 (필기합격)",
                 description = "자료구조, 운영체제, 알고리즘, 데이터베이스 등",
                 host = "한국산업인력공단",
-                achievedDate = LocalDate.of(2020, 2, 2),
+                achievedDate = LocalDate.of(2024, 3, 4),
                 isActive = true
             )
         )
@@ -64,33 +64,36 @@ class DataInitializer(
 
         // experience / experience_detail 초기화
         val experience1 = Experience(
-            title = "캣홀릭대학교(CatHolic Univ.)",
-            description = "컴퓨터공학 전공",
-            startYear = 2018,
-            startMonth = 9,
-            endYear = 2022,
-            endMonth = 8,
+            title = "자바(Java)기반 AWS 클라우드 활용 스마트 웹&앱 서비스 풀스택 개발과정 수료",
+            description = "그린컴퓨터아카데미(울산)",
+            startYear = 2023,
+            startMonth = 10,
+            endYear = 2024,
+            endMonth = 5,
             isActive = true
         )
         experience1.addDetails(
             mutableListOf(
-                ExperienceDetail(content = "GPA 4.3/4.5", isActive = true),
-                ExperienceDetail(content = "소프트웨어 연구 학회 활동", isActive = true)
+                ExperienceDetail(content = "html5, css3, Javascript, jQuery를 활용한 웹 표준 화면 구현", isActive = true),
+                ExperienceDetail(content = "Java 프로그래밍, JSP 웹 프로그래밍", isActive = true),
+                ExperienceDetail(content = "Spring프레임워크, SpringBoot활용", isActive = true),
+                ExperienceDetail(content = "AWS 클라우드 활용 백엔드 프로젝트", isActive = true)
             )
         )
         val experience2 = Experience(
-            title = "주식회사 캣카오(Catkao Corp.)",
-            description = "소셜서비스팀 백엔드 개발자",
+            title = "울산북구청소년상담복지센터",
+            description = "청소년안전망팀 팀장",
             startYear = 2022,
-            startMonth = 9,
-            endYear = null,
-            endMonth = null,
+            startMonth = 3,
+            endYear = 2023,
+            endMonth = 5,
             isActive = true
         )
         experience2.addDetails(
             mutableListOf(
-                ExperienceDetail(content = "유기묘 위치 공유 서비스 개발", isActive = true),
-                ExperienceDetail(content = "신입 교육 프로그램 우수상 수상", isActive = true)
+                ExperienceDetail(content = "청소년/학부모 심리상담 및 교육", isActive = true),
+                ExperienceDetail(content = "지역사회 내 청소년안전망사업 총괄", isActive = true),
+                ExperienceDetail(content = "고위기청소년 맞춤형 프로그램 총괄", isActive = true)
             )
         )
         experienceRepository.saveAll(mutableListOf(experience1, experience2))
@@ -98,60 +101,65 @@ class DataInitializer(
         // skill 초기화
         val java = Skill(name = "Java", type = SkillType.LANGUAGE.name, isActive = true)
         val kotlin = Skill(name = "Kotlin", type = SkillType.LANGUAGE.name, isActive = true)
-        val python = Skill(name = "Python", type = SkillType.LANGUAGE.name, isActive = true)
+        val web = Skill(name = "Html,css,Js", type = SkillType.LANGUAGE.name, isActive = true)
         val spring = Skill(name = "Spring", type = SkillType.FRAMEWORK.name, isActive = true)
-        val django = Skill(name = "Django", type = SkillType.FRAMEWORK.name, isActive = true)
+        val react = Skill(name = "React.js", type = SkillType.FRAMEWORK.name, isActive = true)
+        val node = Skill(name = "Node.js", type = SkillType.FRAMEWORK.name, isActive = true)
         val mysql = Skill(name = "MySQL", type = SkillType.DATABASE.name, isActive = true)
-        val redis = Skill(name = "Redis", type = SkillType.DATABASE.name, isActive = true)
-        val kafka = Skill(name = "Kafka", type = SkillType.TOOL.name, isActive = true)
-        skillRepository.saveAll(mutableListOf(java, kotlin, python, spring, django, mysql, redis, kafka))
+        val mongodb = Skill(name = "MongoDB", type = SkillType.DATABASE.name, isActive = true)
+        val git = Skill(name = "Git", type = SkillType.TOOL.name, isActive = true)
+        val docker = Skill(name = "Docker", type = SkillType.TOOL.name, isActive = true)
+        skillRepository.saveAll(mutableListOf(java, kotlin, web, spring, react, node, mysql, mongodb, git, docker))
 
         // project / project_detail / project_skill 초기화
 
         val project1 = Project(
-            name = "유기묘 발견 정보 공유 서비스",
-            description = "유기묘 위치의 실시간 공유, 임시보호까지 연결해주는 서비스. 구글 맵스를 연동하여 유기묘 위치 정보를 직관적으로 파악할 수 있도록 하는 사용자 경험 개선 작업.",
-            startYear = 2022,
-            startMonth = 9,
-            endYear = 2022,
-            endMonth = 12,
+            name = "웹 개발자 홍국진 포트폴리오 프로젝트",
+            description = "상시 운영되는 이력/포트폴리오 게시 웹 프로젝트.",
+            startYear = 2024,
+            startMonth = 8,
+            endYear = null,
+            endMonth = null,
             isActive = true
         )
         project1.addDetails(
             mutableListOf(
-                ProjectDetail(content = "구글 맵스를 활용한 유기묘 발견 지역 정보 제공 API 개발", url = null, isActive = true),
-                ProjectDetail(content = "Redis 적용하여 인기 게시글의 조회 속도 1.5초 → 0.5초로 개선", url = null, isActive = true)
+                ProjectDetail(content = "Kotlin, SpringBoot등 새로운 개발언어 습득 및 실습", url = null, isActive = true),
+                ProjectDetail(content = "Docker를 활용하여 가상 환경에서의 데이터베이스 운용", url = null, isActive = true)
             )
         )
         project1.skills.addAll(
             mutableListOf(
-                ProjectSkill(project = project1, skill = java),
+                ProjectSkill(project = project1, skill = kotlin),
                 ProjectSkill(project = project1, skill = spring),
                 ProjectSkill(project = project1, skill = mysql),
-                ProjectSkill(project = project1, skill = redis)
+                ProjectSkill(project = project1, skill = docker)
             )
         )
         val project2 = Project(
-            name = "반려동물 홈 카메라 움직임 감지 분석 모듈",
-            description = "카메라에서 서버로 전달되는 신호를 분석하여 움직임이 감지될 경우 클라이언트에게 알림 발송 작업.",
-            startYear = 2022,
-            startMonth = 12,
+            name = "ChatGPT를 활용한 운세봐주는 강아지 웹 프로젝트",
+            description = "ChatGPT API를 활용한 대화형 웹서비스, 카카오 애드핏을 통한 배너 활용",
+            startYear = 2024,
+            startMonth = 5,
             endYear = null,
             endMonth = null,
             isActive = true
         )
         project2.addDetails(
             mutableListOf(
-                ProjectDetail(content = "PIL(Pillow) 활용하여 이미지 분석 기능 개발", url = null, isActive = true),
-                ProjectDetail(content = "알림 발송을 비동기 처리하여 이미지 분석 - 알림 발송 기능간 의존도 감소", url = null, isActive = true),
-                ProjectDetail(content = "Github Repository", url = "https://github.com/infomuscle", isActive = true)
+                ProjectDetail(content = "Node.js, Express를 통해 ChatGPT API서버와 소통하고 백엔드 서버 구축", url = null, isActive =
+                true),
+                ProjectDetail(content = "Cloudflare Pages를 통한 프런트엔드, AWS Lambda를 통한 서버리스 백엔드 배포", url = null,
+                    isActive =
+                true),
+                ProjectDetail(content = "운영사이트", url = "https://chatdoge-hong.pages.dev/", isActive = true)
             )
         )
         project2.skills.addAll(
             mutableListOf(
-                ProjectSkill(project = project2, skill = python),
-                ProjectSkill(project = project2, skill = django),
-                ProjectSkill(project = project2, skill = kafka)
+                ProjectSkill(project = project2, skill = react),
+                ProjectSkill(project = project2, skill = node),
+                ProjectSkill(project = project2, skill = web)
             )
         )
         projectRepository.saveAll(mutableListOf(project1, project2))

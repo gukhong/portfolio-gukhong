@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/admin/api/project")
+@RequestMapping("/admin/api/projects")
 class AdminProjectApiController(
     private val adminProjectService: AdminProjectService
 ) {
